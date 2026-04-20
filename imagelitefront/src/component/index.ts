@@ -1,5 +1,7 @@
-export { Template } from './Template'
+export { Template, RendeIf } from './Template'
 export {ImageCard} from './ImageCard'
 export {Button} from './button'
-export {InputText} from './Input'
+export {InputText, FieldError} from './input'
+export { useNotification } from './notification'
+
 

@@ -1,12 +1,13 @@
 import React from "react"
 
 interface ButtonProps{
-    style?: string;
+    style?: string;//props
     label?: string;
     onClick?: (event: any) => void;
     type?: "submit" | "button" | "reset" | undefined;
 }
 
+//componente Button
 export const Button: React.FC<ButtonProps> = ({  
     onClick, style, label, type
 } :  ButtonProps) =>{

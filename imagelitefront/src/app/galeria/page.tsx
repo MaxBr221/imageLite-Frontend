@@ -1,5 +1,5 @@
 'use client'
-import { Template, ImageCard, Button } from '@/component'
+import { Template, ImageCard, Button, useNotification } from '@/component'
 import { Image } from '@/resources/image/image.resource';
 import { useImageService } from '@/resources/image/imagee.service';
 import {  useState } from 'react'//react hulk -> uma função que executa algo
@@ -9,7 +9,8 @@ import { InputText  } from '@/component';
 
 export default function GaleriaPage(){
     const useService = useImageService();
-    const[images, setImages] = useState<Image[]>([]);
+    const notification = useNotification();
+    const [images, setImages] = useState<Image[]>([]);
     const [query, setQuery] = useState<string>('');
     const [extension, setExtension] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
@@ -20,6 +21,10 @@ export default function GaleriaPage(){
         const result = await useService.buscar(query, extension);
         setImages(result);
         setLoading(false);
+
+        if(!result.length){
+            notification.notify('Nenhum resultado encontrado', 'warning');
+        }
 
     }
     function renderImageCard(image: Image){
